@@ -1,13 +1,12 @@
-import {alpha, createTheme} from "@mui/material";
-import palette from "./palette.theme";
-import fonts from "../assets/fonts";
-import {Colors} from "../constants/colors.constants";
-
+import { alpha, createTheme } from '@mui/material';
+import palette from './palette.theme';
+import fonts from '../assets/fonts';
+import Colors from '../constants/colors.constants';
 
 const theme = createTheme({
   palette,
   typography: {
-    fontFamily: "YoutubeSans, sans-serif"
+    fontFamily: 'YoutubeSans, sans-serif',
   },
   components: {
     MuiCssBaseline: {
@@ -39,9 +38,9 @@ const theme = createTheme({
             transparent
           );
         }
-				div#root {
-					height: 100%;
-				}
+        div#root {
+          height: 100%;
+        }
         *::-webkit-scrollbar {
           height: 8px;
           width: 8px;
@@ -53,9 +52,9 @@ const theme = createTheme({
         }
         *::-webkit-scrollbar-thumb {
           background-color: ${Colors.primary};
-          border-radius: 4px;`
+          border-radius: 4px;`,
     },
-  }
+  },
 });
 
 export default theme;
