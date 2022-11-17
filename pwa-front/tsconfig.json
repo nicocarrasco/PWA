@@ -30,7 +30,9 @@
       "types": ["types"],
       "types/*": ["types/*"],
       "contexts": ["contexts"],
-      "contexts/*": ["contexts/*"]
+      "contexts/*": ["contexts/*"],
+      "themes": ["themes"],
+      "themes/*": ["themes/*"]
     }
   }
 }
