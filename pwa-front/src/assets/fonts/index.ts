@@ -1,8 +1,5 @@
-// @ts-ignore
 import YoutubeSansMedium from './YoutubeSans/youtube-sans-medium.ttf';
-// @ts-ignore
 import YoutubeSansBold from './YoutubeSans/youtube-sans-bold.ttf';
-// @ts-ignore
 import YoutubeSansLight from './YoutubeSans/youtube-sans-light.ttf';
 
 const fonts = `
