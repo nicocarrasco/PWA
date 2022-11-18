@@ -7,10 +7,10 @@ type ColorsType = {
 };
 
 const Colors: ColorsType = {
-  primary: '#fff',
+  primary: '#ae84ef',
   secondary: '#fff',
   white: '#fff',
-  error: '#fff',
+  error: '#d03636',
   secondaryText: '#fff',
 };
 
