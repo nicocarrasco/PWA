@@ -10,6 +10,12 @@ export class EnvironmentVariables {
 
   @IsString()
   JWT_SECRET: string = 'PWA-AHZJDFK1324';
+
+  @IsString()
+  WEBPUSH_PUBLIC_KEY;
+
+  @IsString()
+  WEBPUSH_PRIVATE_KEY;
 }
 
 export function validateEnv(config: Record<string, unknown>) {

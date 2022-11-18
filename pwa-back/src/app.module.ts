@@ -4,6 +4,7 @@ import { EnvironmentVariables, validateEnv } from './_utils/config/env.config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { WebpushModule } from './webpush/webpush.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { AuthModule } from './auth/auth.module';
     }),
     UsersModule,
     AuthModule,
+    WebpushModule,
   ],
 })
 export class AppModule {}
