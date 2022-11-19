@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import * as webpush from 'web-push';
 import { ConfigService } from '@nestjs/config';
 import { EnvironmentVariables } from '../_utils/config/env.config';
-import { CreateWebPushDto } from './_utils/dto/request/create-web-push.dto';
+import { UserDocument } from '../users/user.schema';
 
 @Injectable()
 export class WebpushService {
@@ -16,15 +16,15 @@ export class WebpushService {
 
   getWebPushPublicKey = () => ({ publicKey: this.config.get('WEBPUSH_PUBLIC_KEY') });
 
-  senNotificationPush(createWebPushDto: CreateWebPushDto) {
+  senNotificationPush(user: UserDocument, content: string) {
+    if (!user.webpush) return;
     const pushSubscription = {
-      endpoint: createWebPushDto.endpoint,
+      endpoint: user.webpush.endpoint,
       keys: {
-        auth: createWebPushDto.auth,
-        p256dh: createWebPushDto.token,
+        auth: user.webpush.auth,
+        p256dh: user.webpush.token,
       },
     };
-
-    return webpush.sendNotification(pushSubscription, 'Your Push Payload Text');
+    return webpush.sendNotification(pushSubscription, content);
   }
 }

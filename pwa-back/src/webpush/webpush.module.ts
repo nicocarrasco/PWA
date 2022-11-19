@@ -5,5 +5,6 @@ import { WebpushController } from './webpush.controller';
 @Module({
   controllers: [WebpushController],
   providers: [WebpushService],
+  exports: [WebpushService],
 })
 export class WebpushModule {}

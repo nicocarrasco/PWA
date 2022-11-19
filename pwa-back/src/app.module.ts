@@ -5,6 +5,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { WebpushModule } from './webpush/webpush.module';
+import { RumorsModule } from './rumors/rumors.module';
+import { LocationsModule } from './locations/locations.module';
 
 @Module({
   imports: [
@@ -19,6 +21,8 @@ import { WebpushModule } from './webpush/webpush.module';
     UsersModule,
     AuthModule,
     WebpushModule,
+    RumorsModule,
+    LocationsModule,
   ],
 })
 export class AppModule {}

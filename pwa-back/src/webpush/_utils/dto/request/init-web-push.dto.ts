@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
 
-export class CreateWebPushDto {
+export class InitWebPushDto {
   @ApiProperty()
   @IsString()
   endpoint: string;
