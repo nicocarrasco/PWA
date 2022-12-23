@@ -1,4 +1,4 @@
-import { forwardRef, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { RumorsService } from './rumors.service';
 import { RumorsController } from './rumors.controller';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -8,11 +8,7 @@ import { WebpushModule } from '../webpush/webpush.module';
 import { UsersModule } from '../users/users.module';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([{ name: Rumor.name, schema: RumorSchema }]),
-    forwardRef(() => WebpushModule),
-    forwardRef(() => UsersModule),
-  ],
+  imports: [MongooseModule.forFeature([{ name: Rumor.name, schema: RumorSchema }]), WebpushModule, UsersModule],
   controllers: [RumorsController],
   providers: [RumorsService, RumorsRepository],
   exports: [RumorsService, RumorsRepository],

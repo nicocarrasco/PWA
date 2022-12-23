@@ -1,4 +1,4 @@
-import { forwardRef, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { LocationsService } from './locations.service';
 import { LocationsController } from './locations.controller';
 import { LocationsRepository } from './locations.repository';
@@ -8,10 +8,7 @@ import { RumorsModule } from '../rumors/rumors.module';
 import { LocationExistRule } from './_utils/location-exist.rule';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([{ name: Location.name, schema: LocationSchema }]),
-    forwardRef(() => RumorsModule),
-  ],
+  imports: [MongooseModule.forFeature([{ name: Location.name, schema: LocationSchema }]), RumorsModule],
   controllers: [LocationsController],
   providers: [LocationsService, LocationsRepository, LocationExistRule],
   exports: [LocationsService, LocationsRepository],
