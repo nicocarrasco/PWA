@@ -1,20 +1,20 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { GetLocationDto } from '../../../../locations/_utils/dto/response/get-location.dto';
-import { GetUserLightDto } from '../../../../users/_utils/dto/response/get-user-light.dto';
+import GetLocationDto from '../../../../locations/_utils/dto/response/get-location.dto';
+import GetUserLightDto from '../../../../users/_utils/dto/response/get-user-light.dto';
 
-export class GetRumorDto {
+export default class GetRumorDto {
   @ApiProperty()
-  id: string;
-
-  @ApiProperty()
-  content: string;
+    id: string;
 
   @ApiProperty()
-  location: GetLocationDto;
+    content: string;
 
   @ApiProperty()
-  user: GetUserLightDto;
+    location: GetLocationDto;
 
   @ApiProperty()
-  date: Date;
+    user: GetUserLightDto;
+
+  @ApiProperty()
+    date: Date;
 }

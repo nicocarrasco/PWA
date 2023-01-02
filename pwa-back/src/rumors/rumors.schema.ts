@@ -9,13 +9,13 @@ export type RumorDocument = Rumor & Document;
 @Schema({ timestamps: true })
 export class Rumor {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: User.name })
-  user: UserDocument;
+    user: UserDocument;
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Location.name })
-  location: LocationDocument;
+    location: LocationDocument;
 
   @Prop({ required: true })
-  content: string;
+    content: string;
 
   createdAt: Date;
 }

@@ -7,7 +7,7 @@ import {
 } from 'class-validator';
 import { Injectable } from '@nestjs/common';
 import { Types } from 'mongoose';
-import { LocationsRepository } from '../locations.repository';
+import LocationsRepository from '../locations.repository';
 
 @ValidatorConstraint({ name: 'LocationExists', async: true })
 @Injectable()
@@ -23,11 +23,11 @@ export class LocationExistRule implements ValidatorConstraintInterface {
 }
 
 export function LocationExists(validationOptions?: ValidationOptions) {
-  return function (object: any, propertyName: string) {
+  return (object: unknown, propertyName: string) => {
     registerDecorator({
       name: 'LocationExists',
       target: object.constructor,
-      propertyName: propertyName,
+      propertyName,
       options: validationOptions,
       validator: LocationExistRule,
     });

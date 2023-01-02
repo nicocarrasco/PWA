@@ -1,10 +1,10 @@
 import { Controller, Get } from '@nestjs/common';
-import { WebpushService } from './webpush.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import WebpushService from './webpush.service';
 
 @Controller('webpush')
 @ApiTags('Webpush')
-export class WebpushController {
+export default class WebpushController {
   constructor(private readonly webpushService: WebpushService) {}
 
   @Get()

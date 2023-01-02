@@ -1,10 +1,10 @@
 import { BadRequestException, Injectable, PipeTransform } from '@nestjs/common';
 import { Types } from 'mongoose';
-import { UsersRepository } from '../users.repository';
+import UsersRepository from '../users.repository';
 import { UserDocument } from '../user.schema';
 
 @Injectable()
-export class UserByIdPipe implements PipeTransform<string, Promise<UserDocument>> {
+export default class UserByIdPipe implements PipeTransform<string, Promise<UserDocument>> {
   constructor(private usersRepository: UsersRepository) {}
 
   transform(userId: string) {

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Injectable } from '@nestjs/common';
 import * as webpush from 'web-push';
 import { ConfigService } from '@nestjs/config';
@@ -5,7 +7,7 @@ import { EnvironmentVariables } from '../_utils/config/env.config';
 import { UserDocument } from '../users/user.schema';
 
 @Injectable()
-export class WebpushService {
+export default class WebpushService {
   constructor(private readonly config: ConfigService<EnvironmentVariables, true>) {
     webpush.setVapidDetails(
       'mailto:example@atiteux.fr',
@@ -14,7 +16,7 @@ export class WebpushService {
     );
   }
 
-  getWebPushPublicKey = () => ({ publicKey: this.config.get('WEBPUSH_PUBLIC_KEY') });
+  getWebPushPublicKey = () => ({ publicKey: this.config.get<unknown>('WEBPUSH_PUBLIC_KEY') });
 
   senNotificationPush(user: UserDocument, content: string) {
     if (!user.webpush) return;
@@ -25,6 +27,7 @@ export class WebpushService {
         p256dh: user.webpush.token,
       },
     };
+    // eslint-disable-next-line consistent-return
     return webpush.sendNotification(pushSubscription, content);
   }
 }

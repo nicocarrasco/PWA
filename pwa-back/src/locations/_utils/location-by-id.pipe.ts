@@ -1,10 +1,10 @@
 import { BadRequestException, Injectable, PipeTransform } from '@nestjs/common';
 import { Types } from 'mongoose';
 import { LocationDocument } from '../locations.schema';
-import { LocationsRepository } from '../locations.repository';
+import LocationsRepository from '../locations.repository';
 
 @Injectable()
-export class LocationByIdPipe implements PipeTransform<string, Promise<LocationDocument>> {
+export default class LocationByIdPipe implements PipeTransform<string, Promise<LocationDocument>> {
   constructor(private locationsRepository: LocationsRepository) {}
 
   transform(locationId: string) {

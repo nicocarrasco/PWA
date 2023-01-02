@@ -29,33 +29,48 @@
 ## Installation
 
 ```bash
-$ npm install
+$ yarn install
 ```
 
 ## Running the app
 
+### pre-requisite
+
+- link to install MongoDB Compass for the dev env: [MongoDB Compass](https://www.mongodb.com/try/download/compass)
+
 ```bash
 # development
-$ npm run start
+$ yarn start:dev
 
-# watch mode
-$ npm run start:dev
+# build for the production
+$ yarn build
 
-# production mode
-$ npm run start:prod
+# production
+$ yarn start:prod
 ```
 
-## Test
+## How to deploy
+
+### pre-requisite steps
+
+- install heroku cli globaly: [Heroku cli](https://devcenter.heroku.com/articles/heroku-cli)
+
+- link to the heroku platform with the command:
 
 ```bash
-# unit tests
-$ npm run test
+$ heroku login
+```
 
-# e2e tests
-$ npm run test:e2e
+- add the heroku remote if is not alredy added:
 
-# test coverage
-$ npm run test:cov
+```bash
+$ heroku git:remote -a {app name}
+```
+
+## Deploy command
+
+```bash
+$ git push heroku main
 ```
 
 ## Support

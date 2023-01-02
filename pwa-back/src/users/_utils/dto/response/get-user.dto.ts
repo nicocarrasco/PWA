@@ -1,10 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { GetLocationDto } from '../../../../locations/_utils/dto/response/get-location.dto';
+import GetLocationDto from '../../../../locations/_utils/dto/response/get-location.dto';
 
-export class GetUserDto {
+export default class GetUserDto {
   @ApiProperty()
-  username: string;
+    id: string;
+
+  @ApiProperty()
+    username: string;
 
   @ApiProperty({ type: [GetLocationDto] })
-  locations: GetLocationDto[];
+    locations: GetLocationDto[];
 }

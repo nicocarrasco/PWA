@@ -1,14 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateLocationDto } from './_utils/dto/request/create-location.dto';
-import { LocationsRepository } from './locations.repository';
-import { LocationsMapper } from './locations.mapper';
+import CreateLocationDto from './_utils/dto/request/create-location.dto';
+import LocationsRepository from './locations.repository';
+import LocationsMapper from './locations.mapper';
 
 @Injectable()
-export class LocationsService {
+export default class LocationsService {
   constructor(private readonly locationsRepository: LocationsRepository) {}
 
-  createLocation = (createLocation: CreateLocationDto) =>
-    this.locationsRepository.create(createLocation).then(this.getLocation);
+  createLocation = (createLocation: CreateLocationDto) => this.locationsRepository.create(
+    createLocation,
+  ).then(this.getLocation);
 
   getAllLocation = () => this.locationsRepository.findAll().then((x) => x.map(this.getLocation));
 

@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class GetLocationDto {
+export default class GetLocationDto {
   @ApiProperty()
-  id: string;
+    id: string;
 
   @ApiProperty()
-  location: string;
+    location: string;
 }
