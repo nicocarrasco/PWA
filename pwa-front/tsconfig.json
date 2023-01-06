@@ -17,22 +17,26 @@
     "jsx": "react-jsx",
     "baseUrl": "src",
     "paths": {
+      "api": ["api"],
+      "api/*": ["api/*"],
       "assets": ["assets"],
       "assets/*": ["assets/*"],
       "components": ["components"],
       "components/*": ["components/*"],
+      "styles": ["styles"],
+      "styles/*": ["styles/*"],
       "hooks": ["hooks"],
       "hooks/*": ["hooks/*"],
-      "router": ["router"],
-      "router/*": ["router/*"],
+      "navigation": ["navigation"],
+      "navigation/*": ["navigation/*"],
       "screens": ["screens"],
       "screens/*": ["screens/*"],
-      "types": ["types"],
-      "types/*": ["types/*"],
       "contexts": ["contexts"],
       "contexts/*": ["contexts/*"],
-      "themes": ["themes"],
-      "themes/*": ["themes/*"]
+      "constants": ["constants"],
+      "constants/*": ["constants/*"],
+      "utils": ["utils"],
+      "utils/*": ["utils/*"]
     }
   }
 }

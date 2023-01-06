@@ -1,28 +1,31 @@
 {
-  "name": "pwa-react-typescript",
+  "name": "PWA-FRONT",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.10.14",
+    "@mui/lab": "^5.0.0-alpha.108",
     "@mui/material": "^5.10.14",
+    "@tanstack/react-query": "^4.20.4",
+    "@types/socket.io": "^3.0.2",
+    "axios": "^1.2.2",
+    "formik": "^2.2.9",
+    "i18next": "^22.0.6",
+    "i18next-browser-languagedetector": "^7.0.1",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^12.0.0",
+    "react-icons": "^4.6.0",
     "react-router-dom": "^6.4.3",
-    "typescript": "^4.9.3",
-    "web-vitals": "^2.1.4",
-    "workbox-background-sync": "^6.5.4",
-    "workbox-broadcast-update": "^6.5.4",
-    "workbox-cacheable-response": "^6.5.4",
-    "workbox-core": "^6.5.4",
-    "workbox-expiration": "^6.5.4",
-    "workbox-google-analytics": "^6.5.4",
-    "workbox-navigation-preload": "^6.5.4",
-    "workbox-precaching": "^6.5.4",
-    "workbox-range-requests": "^6.5.4",
-    "workbox-routing": "^6.5.4",
-    "workbox-strategies": "^6.5.4",
-    "workbox-streams": "^6.5.4"
+    "react-scripts": "5.0.1",
+    "react-toastify": "^9.1.1",
+    "socket.io-client": "^4.5.4",
+    "typescript": "*",
+    "web-vitals": "^2.1.0",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -30,12 +33,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint . --fix --ext .js,.jsx,.ts,.tsx"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
@@ -54,12 +51,12 @@
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^27.0.1",
+    "@types/moment": "^2.13.0",
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
-    "autoprefixer": "^10.4.13",
     "eslint": "^8.2.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
@@ -70,8 +67,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "postcss": "^8.4.18",
-    "prettier": "^2.7.1",
-    "react-scripts": "5.0.1"
+    "prettier": "^2.7.1"
   }
 }
