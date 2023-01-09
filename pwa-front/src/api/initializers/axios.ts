@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
 export const LOCAL_URL = 'https://localhost:3001/api';
-export const BASE_URL = 'https://rumorz.atiteux.fr/api';
+export const BASE_URL = 'https://rumorz.herokuapp.com/api';
 
 export const api = axios.create({
   baseURL: BASE_URL,
