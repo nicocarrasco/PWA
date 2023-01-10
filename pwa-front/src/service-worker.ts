@@ -9,11 +9,13 @@
 // You can also remove this file if you'd prefer not to use a
 // service worker, and the Workbox build step will be skipped.
 
+import { BASE_URL } from 'api/initializers/axios';
+import { BackgroundSyncPlugin } from 'workbox-background-sync';
 import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
-import { StaleWhileRevalidate } from 'workbox-strategies';
+import { NetworkFirst, NetworkOnly, StaleWhileRevalidate } from 'workbox-strategies';
 
 declare const self: ServiceWorkerGlobalScope;
 
@@ -79,3 +81,25 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+registerRoute(
+  ({ url }) => {
+    return `https://${url.host}/api` === BASE_URL
+  },
+  new NetworkFirst({
+    cacheName: "url-GET",
+  })
+);
+
+const bgSyncPlugin = new BackgroundSyncPlugin("POST-que", {
+  maxRetentionTime: 24 * 60,
+});
+
+registerRoute(
+  ({ url }) => {
+    return `https://${url.host}/api` === BASE_URL
+  },
+  new NetworkOnly({
+    plugins: [bgSyncPlugin],
+  }),
+  "POST"
+);
