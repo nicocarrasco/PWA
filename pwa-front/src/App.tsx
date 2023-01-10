@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,7 +16,7 @@ import i18n from 'i18n';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClientApi } from 'api/initializers/reactQuery';
 import { useTranslation } from 'react-i18next';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 import useAxiosInterceptors from 'hooks/useAxiosInterceptors';
@@ -25,9 +25,35 @@ import useOnlineStatus from 'hooks/useOnlineStatus';
 function Initializer() {
   const { theme } = useContextTheme();
   const { t } = useTranslation(['common']);
+  const wasOffline = useRef(false);
 
   // Initialize online status and axios interceptors
-  useOnlineStatus();
+  const { onlineStatus } = useOnlineStatus();
+  useEffect(() => {
+    if (!onlineStatus) {
+      wasOffline.current = true;
+      toast.info('Vous êtes hors-ligne', {
+        position: 'bottom-left',
+        autoClose: 5000,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
+    } else if (onlineStatus && wasOffline.current) {
+      wasOffline.current = false;
+      toast.info('Vous êtes de nouveau en ligne', {
+        position: 'bottom-left',
+        autoClose: 5000,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
+    }
+  }, [onlineStatus]);
   const { isFetching } = useAxiosInterceptors();
 
   return (

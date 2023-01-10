@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 
 const accessToken = localStorage.getItem('accessToken');
 
-const useAxiosInterceptors = () => {
+const useAxiosInterceptors = (): { isFetching: boolean } => {
   const { setUser } = useContextUser();
   const { t } = useTranslation(['notification']);
 

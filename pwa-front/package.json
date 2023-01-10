@@ -26,6 +26,7 @@
     "socket.io-client": "^4.5.4",
     "typescript": "*",
     "web-vitals": "^2.1.0",
+    "workbox-background-sync": "^6.5.4",
     "workbox-core": "^6.5.4",
     "workbox-expiration": "^6.5.4",
     "workbox-precaching": "^6.5.4",
