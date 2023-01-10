@@ -2,6 +2,9 @@
 // register() is not called by default.
 /* eslint-disable  */
 
+import { toast } from "react-toastify";
+import Test from 'components/Test'
+
 // This lets the app load faster on subsequent visits in production, and gives
 // it offline capabilities. However, it also means that developers (and users)
 // will only see deployed updates on subsequent visits to a page, after all the
@@ -74,10 +77,16 @@ function registerValidSW(swUrl: string, config?: Config) {
               // At this point, the updated precached content has been fetched,
               // but the previous service worker will still serve the older
               // content until all client tabs are closed.
-              console.log(
-                'New content is available and will be used when all ' +
-                  'tabs for this page are closed. See https://cra.link/PWA.'
-              );
+              toast.info(<Test waitingWorker={registration.waiting} />, {
+                position: "bottom-left",
+                autoClose: false,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                });
 
               // Execute callback
               if (config && config.onUpdate) {
