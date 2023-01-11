@@ -16,21 +16,16 @@ export default class RumorsService {
   ) {}
 
   async createRumor(user: UserDocument, createRumor: CreateRumorDto, location: LocationDocument) {
-    const rumor = await this.rumorsRepository.createRumor(
-      user,
-      createRumor,
-      location,
-    ).then(this.getRumor);
+    const rumor = await this.rumorsRepository.createRumor(user, createRumor, location).then(this.getRumor);
     const userSubscribedToLocation = await this.usersRepository.findAllByLocation(location);
-    userSubscribedToLocation.map((x) => this.webpushService.senNotificationPush(x, rumor.content));
+    userSubscribedToLocation.map((x) => this.webpushService.sendNotificationPush(x, rumor.content));
     return rumor;
   }
 
   getRumor = RumorsMapper.toGetRumorDto;
 
-  getAllRumorInLocation = (location: LocationDocument) => this.rumorsRepository.findAllByLocation(
-    location,
-  ).then((x) => x.map(this.getRumor));
+  getAllRumorInLocation = (location: LocationDocument) =>
+    this.rumorsRepository.findAllByLocation(location).then((x) => x.map(this.getRumor));
 
   getAllRumor = () => this.rumorsRepository.findAllrumors().then((x) => x.map(this.getRumor));
 }
