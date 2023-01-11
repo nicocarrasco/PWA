@@ -18,7 +18,7 @@ export default class WebpushService {
 
   getWebPushPublicKey = () => ({ publicKey: this.config.get<unknown>('WEBPUSH_PUBLIC_KEY') });
 
-  senNotificationPush(user: UserDocument, content: string) {
+  sendNotificationPush(user: UserDocument, content: string) {
     if (!user.webpush) return;
     const pushSubscription = {
       endpoint: user.webpush.endpoint,

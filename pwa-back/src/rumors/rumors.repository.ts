@@ -19,24 +19,25 @@ export default class RumorsRepository {
 
   findOneById = (id: string) => this.model.findOne({ _id: id }).populate(this.fullPopulate).exec();
 
-  findAllByLocation = (location: LocationDocument) => this.model.find({
-    location,
-  }).populate(this.fullPopulate).exec();
+  findAllByLocation = (location: LocationDocument) =>
+    this.model
+      .find({
+        location,
+      })
+      .populate(this.fullPopulate)
+      .exec();
 
   findAllrumors = () => this.model.find().populate(this.fullPopulate).exec();
 
   // eslint-disable-next-line @typescript-eslint/unbound-method
   findOneByIdOrThrow = (id: string) => this.findOneById(id).then(this.orThrow);
 
-  createRumor = (
-    user: UserDocument,
-    createRumor: CreateRumorDto,
-    location: LocationDocument,
-  ) => this.model
-    .create({
-      user,
-      content: createRumor.content,
-      location,
-    })
-    .then((x) => x.populate(this.fullPopulate));
+  createRumor = (user: UserDocument, createRumor: CreateRumorDto, location: LocationDocument) =>
+    this.model
+      .create({
+        user,
+        content: createRumor.content,
+        location,
+      })
+      .then((x) => x.populate(this.fullPopulate));
 }

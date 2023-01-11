@@ -1,9 +1,5 @@
-import {
-  Body, Controller, Get, Param, Post,
-} from '@nestjs/common';
-import {
-  ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags,
-} from '@nestjs/swagger';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import GetMessageDto from '../chat/_utils/dto/response/get-message.dto';
 import LocationsService from './locations.service';
 import CreateLocationDto from './_utils/dto/request/create-location.dto';
@@ -48,7 +44,7 @@ export default class LocationsController {
   @ApiParam({ type: 'string', name: 'locationId' })
   @ApiCreatedResponse({ description: 'SUCCESS', type: GetRumorDto })
   createRumor(
-  @User() user: UserDocument,
+    @User() user: UserDocument,
     @Param('locationId', LocationByIdPipe) location: LocationDocument,
     @Body() createRumorDto: CreateRumorDto,
   ) {
