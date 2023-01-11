@@ -7,16 +7,16 @@ import Validate from '../../../../_utils/decorator/validate-nested.decorator';
 export default class UpdateUserDto {
   @ApiPropertyOptional()
   @IsOptional()
-    username: string;
+  username: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsMongoId({ each: true })
   @LocationExists({ each: true })
-    locations: string[];
+  locations: string[];
 
   @ApiPropertyOptional()
   @IsOptional()
   @Validate(InitWebPushDto)
-    webpush: InitWebPushDto;
+  webpush: InitWebPushDto;
 }

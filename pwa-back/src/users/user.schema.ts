@@ -8,16 +8,16 @@ export type UserDocument = User & Document;
 @Schema()
 export class User {
   @Prop({ required: true, unique: true })
-    username: string;
+  username: string;
 
   @Prop({ required: true })
-    password: string;
+  password: string;
 
   @Prop({ type: [mongoose.Schema.Types.ObjectId], ref: Location.name, default: [] })
-    locations: LocationDocument[];
+  locations: LocationDocument[];
 
   @Prop({ type: InitWebPushDto, default: null })
-    webpush: InitWebPushDto | null;
+  webpush: InitWebPushDto | null;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

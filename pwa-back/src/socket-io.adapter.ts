@@ -6,10 +6,7 @@ import { Server, ServerOptions } from 'socket.io';
 export default class SocketIOAdapter extends IoAdapter {
   private readonly logger = new Logger(SocketIOAdapter.name);
 
-  constructor(
-    private app: INestApplicationContext,
-    private configService: ConfigService,
-  ) {
+  constructor(private app: INestApplicationContext, private configService: ConfigService) {
     super(app);
   }
 

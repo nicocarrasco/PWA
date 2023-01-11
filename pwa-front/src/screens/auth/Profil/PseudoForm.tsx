@@ -11,7 +11,10 @@ import { useMutationUser, userKey } from 'api/user';
 import { useContextUser } from 'contexts/UserProvider';
 import { useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import { askPermission } from 'serviceWorkerRegistration';
 import { validatePseudoSchema } from './validation';
+// // eslint-disable-next-line import/extensions
+// import { askPermission } from '../../../service-worker';
 
 function PseudoForm() {
   const queryClient = useQueryClient();
@@ -31,28 +34,26 @@ function PseudoForm() {
         }}
         validationSchema={validatePseudoSchema}
         onSubmit={({ pseudo }, formikHelper) => {
-          mutate({ username: pseudo }, {
-            onError: () => formikHelper.resetForm(),
-          });
+          mutate(
+            { username: pseudo },
+            {
+              onError: () => formikHelper.resetForm(),
+            },
+          );
         }}
         enableReinitialize
       >
         {() => (
           <Form>
             <Stack spacing={4}>
-              <Stack sx={{ alignSelf: 'end', maxHeight: '24px' }}>
-                {!isLoading ? (
-                  <LoadingButton
-                    color="secondary"
-                    variant="contained"
-                    size="large"
-                    type="submit"
+              <Stack direction="row" justifyContent="flex-end" maxHeight="24px" spacing={2}>
+                <Stack>
+                  <Typography
                     sx={(theme) => ({
                       backgroundColor: 'transparent',
                       border: 'none',
                       boxShadow: 'none',
                       width: 'fit-content',
-
                       padding: '0',
                       color: theme.palette.primary.main,
                       '& .MuiTouchRipple-root': {
@@ -65,13 +66,53 @@ function PseudoForm() {
                         border: 'none',
                         boxShadow: 'none',
                         width: 'fit-content',
-
+                        cursor: 'pointer',
                       },
                     })}
+                    onClick={() => askPermission()}
+                    color="secondary"
+                    fontFamily="Open Sans"
+                    fontWeight="600"
                   >
-                    <Typography fontFamily="Open Sans" fontWeight="600">Modifier profil</Typography>
-                  </LoadingButton>
-                ) : <CircularProgress />}
+                    Accepter les notifiaction
+                  </Typography>
+                </Stack>
+                <Stack>
+                  {!isLoading ? (
+                    <LoadingButton
+                      color="secondary"
+                      variant="contained"
+                      size="large"
+                      type="submit"
+                      sx={(theme) => ({
+                        backgroundColor: 'transparent',
+                        border: 'none',
+                        boxShadow: 'none',
+                        width: 'fit-content',
+
+                        padding: '0',
+                        color: theme.palette.primary.main,
+                        '& .MuiTouchRipple-root': {
+                          color: 'transparent',
+                        },
+                        '&:hover': {
+                          color: darken(theme.palette.primary.main, 0.2),
+                          transition: 'none',
+                          backgroundColor: 'transparent',
+                          border: 'none',
+                          boxShadow: 'none',
+                          width: 'fit-content',
+                        },
+                      })}
+                    >
+                      <Typography fontFamily="Open Sans" fontWeight="600">
+                        Modifier profil
+                      </Typography>
+                    </LoadingButton>
+                  ) : (
+                    <CircularProgress />
+                  )}
+                </Stack>
               </Stack>
               <TextFieldForm
                 icon={<PersonIcon fontSize="inherit" />}
