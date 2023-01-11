@@ -19,41 +19,41 @@ export default class UsersRepository {
 
   findOneById = (id: string) => this.model.findOne({ _id: id }).exec();
 
-  findOneByIdAndRename = (id: string) => this.model
-    .findOne(
-      { _id: id },
-    )
-    .exec()
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    .then(this.orThrow);
+  findOneByIdAndRename = (id: string) =>
+    this.model
+      .findOne({ _id: id })
+      .exec()
+      // eslint-disable-next-line @typescript-eslint/unbound-method
+      .then(this.orThrow);
 
   findOneByUsername = (username: string) => this.model.findOne({ username }).exec();
 
   // eslint-disable-next-line @typescript-eslint/unbound-method
   findOneByIdOrThrow = (id: string) => this.findOneById(id).then(this.orThrow);
 
-  findAllByLocation = (location: LocationDocument) => this.model.find({
-    locations: location,
-  }).exec();
+  findAllByLocation = (location: LocationDocument) =>
+    this.model
+      .find({
+        locations: location,
+      })
+      .exec();
 
-  create = (
-    username: string,
-    password: string,
-  ) => this.model.create({ username, password: hashSync(password, 12) });
+  create = (username: string, password: string) => this.model.create({ username, password: hashSync(password, 12) });
 
-  update = (user: UserDocument, updateUser: UpdateUserDto) => this.model
-    .findByIdAndUpdate(
-      // eslint-disable-next-line no-underscore-dangle
-      user._id,
-      {
-        username: updateUser.username,
-        locations: updateUser.locations,
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        webpush: updateUser.webpush,
-      },
-      { returnDocument: 'after', populate: this.fullPopulate },
-    )
-    .exec()
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    .then(this.orThrow);
+  update = (user: UserDocument, updateUser: UpdateUserDto) =>
+    this.model
+      .findByIdAndUpdate(
+        // eslint-disable-next-line no-underscore-dangle
+        user._id,
+        {
+          username: updateUser.username,
+          locations: updateUser.locations,
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          webpush: updateUser.webpush,
+        },
+        { returnDocument: 'after', populate: this.fullPopulate },
+      )
+      .exec()
+      // eslint-disable-next-line @typescript-eslint/unbound-method
+      .then(this.orThrow);
 }

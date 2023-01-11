@@ -17,13 +17,8 @@ export default class UsersService {
 
   async updateUser(user: UserDocument, updateUser: UpdateUserDto) {
     await this.validateUniqueUser(updateUser.username);
-    return this.usersRepository.update(
-      user,
-      updateUser,
-    ).then(this.getCurrentUser);
+    return this.usersRepository.update(user, updateUser).then(this.getCurrentUser);
   }
 
-  getUser = (userId: string) => this.usersRepository.findOneByIdAndRename(
-    userId,
-  ).then(this.getCurrentUser);
+  getUser = (userId: string) => this.usersRepository.findOneByIdAndRename(userId).then(this.getCurrentUser);
 }

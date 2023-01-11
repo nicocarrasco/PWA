@@ -2,10 +2,11 @@ import React from 'react';
 import Stack from '@mui/material/Stack';
 import { lighten } from '@mui/material/styles';
 import ProfilePicture from 'components/ProfilePicture';
-import { Typography } from '@mui/material';
+import { Badge, Typography } from '@mui/material';
 import DateInfo from 'components/DateInfo';
 import { useNavigate } from 'react-router-dom';
 import { useContextCommu } from 'contexts/CommuProvider';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 type Props = {
   commuName: string,
@@ -38,23 +39,29 @@ function CommuCard({
         navigate(`${commuId}`);
       }}
     >
-      <Stack sx={{ alignItems: 'center', flexDirection: 'row' }}>
-        <Stack>
-          <ProfilePicture />
+      <Stack direction="row" justifyContent="space-between" alignItems="center">
+        <Stack sx={{ alignItems: 'center', flexDirection: 'row' }}>
+          <Stack>
+            <ProfilePicture />
+          </Stack>
+          <Typography
+            sx={{
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              fontWeight: '700',
+              fontSize: '1.2rem',
+              paddingLeft: '16px',
+            }}
+          >
+            {commuName}
+          </Typography>
         </Stack>
-        <Typography
-          sx={{
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            fontWeight: '700',
-            fontSize: '1.2rem',
-            paddingLeft: '16px',
-          }}
-        >
-          {commuName}
-
-        </Typography>
+        <Stack pr="13px">
+          <Badge badgeContent={4} color="primary">
+            <NotificationsIcon />
+          </Badge>
+        </Stack>
       </Stack>
 
       <Stack
@@ -82,8 +89,7 @@ function CommuCard({
           >
             {nbRumors}
             {nbRumors !== undefined
-            && ' rumeurs'}
-
+              && ' rumeurs'}
           </Typography>
           {nbRumors !== undefined && <span>&middot;</span>}
         </Stack>
