@@ -1,4 +1,4 @@
-import { LOCAL_URL } from 'api/initializers/axios';
+import { BASE_URL } from 'api/initializers/axios';
 
 const isPushNotificationSupported = () => 'serviceWorker' in navigator && 'PushManager' in window;
 
@@ -7,7 +7,7 @@ const askUserPermission = async () => Notification.requestPermission();
 const registerServiceWorker = () => navigator.serviceWorker.register(`${process.env.PUBLIC_URL}/service-worker.js`);
 
 const getPublicKey = async () => {
-  const { publicKey } = await fetch(`${LOCAL_URL}/webpush`, {
+  const { publicKey } = await fetch(`${BASE_URL}/webpush`, {
     headers: {
       Accept: 'aplication/json',
     },

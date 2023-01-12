@@ -1,4 +1,4 @@
-import { LOCAL_URL } from 'api/initializers/axios';
+import { BASE_URL } from 'api/initializers/axios';
 import axios from 'axios';
 import {
   askUserPermission,
@@ -74,7 +74,7 @@ const usePushNotifications = () => {
     setLoading(true);
     setError(false);
 
-    await axios.patch(`${LOCAL_URL}/users`, {
+    await axios.patch(`${BASE_URL}/users`, {
       locations,
       webpush: {
         endpoint: userSubscription?.endpoint ? userSubscription?.endpoint : sub?.endpoint,
