@@ -6,9 +6,14 @@ import React, {
   useState,
 } from 'react';
 
+export type LocationType = {
+  id: string;
+};
+
 type UserType = {
   id: string;
   username: string;
+  locations: LocationType[];
 };
 
 const UserContext = React.createContext<{

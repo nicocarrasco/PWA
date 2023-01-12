@@ -9,14 +9,15 @@ type Props = {
   commuName?: string;
 };
 
-function CommuHeader({ commuName } : Props) {
+function CommuHeader({ commuName }: Props) {
   const navigate = useNavigate();
-  const { setCommuId } = useContextCommu();
+  const { commuId, setCommuId } = useContextCommu();
 
   return (
     <Header
       name={commuName || 'commus'}
       isCustomName={!!commuName}
+      commuId={commuId}
       headerChildren={(
         <>
           <ArrowBackIcon fontSize="large" sx={{ cursor: 'pointer' }} onClick={() => { setCommuId(undefined); navigate('/commus'); }} />

@@ -11,7 +11,6 @@ import { useMutationUser, userKey } from 'api/user';
 import { useContextUser } from 'contexts/UserProvider';
 import { useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
-import { askPermission } from 'serviceWorkerRegistration';
 import { validatePseudoSchema } from './validation';
 // // eslint-disable-next-line import/extensions
 // import { askPermission } from '../../../service-worker';
@@ -47,36 +46,6 @@ function PseudoForm() {
           <Form>
             <Stack spacing={4}>
               <Stack direction="row" justifyContent="flex-end" maxHeight="24px" spacing={2}>
-                <Stack>
-                  <Typography
-                    sx={(theme) => ({
-                      backgroundColor: 'transparent',
-                      border: 'none',
-                      boxShadow: 'none',
-                      width: 'fit-content',
-                      padding: '0',
-                      color: theme.palette.primary.main,
-                      '& .MuiTouchRipple-root': {
-                        color: 'transparent',
-                      },
-                      '&:hover': {
-                        color: darken(theme.palette.primary.main, 0.2),
-                        transition: 'none',
-                        backgroundColor: 'transparent',
-                        border: 'none',
-                        boxShadow: 'none',
-                        width: 'fit-content',
-                        cursor: 'pointer',
-                      },
-                    })}
-                    onClick={() => askPermission()}
-                    color="secondary"
-                    fontFamily="Open Sans"
-                    fontWeight="600"
-                  >
-                    Accepter les notifiaction
-                  </Typography>
-                </Stack>
                 <Stack>
                   {!isLoading ? (
                     <LoadingButton

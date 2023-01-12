@@ -2,10 +2,12 @@ import {
   useMutation, useQuery,
 } from '@tanstack/react-query';
 import { AxiosRequestConfig } from 'axios';
+import { LocationType } from 'contexts/UserProvider';
 import { request } from './initializers/axios';
 import { CustomMutationOptions, CustomQueryOptions } from './initializers/reactQuery';
 
 export type UserResponse = {
+  locations: LocationType[];
   username: string;
   id: string;
 };
@@ -35,6 +37,7 @@ export type LoginResponse = {
   user: {
     id: string;
     username: string;
+    locations: LocationType[];
   };
 };
 
