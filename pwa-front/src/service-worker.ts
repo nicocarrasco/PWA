@@ -114,11 +114,12 @@ self.addEventListener("activate", event => {
 });
 
 self.addEventListener("push", (event) => {
-  const text = event.data ? event.data.text() : 'no payload';
-  const title = 'Rumorz';
+  const payload = event.data ? event.data.json() : 'no payload';
+  const title = 'New Rumorz';
   const options = {
-    body: text,
+    body: `${payload.location.location}\n${payload.user.username}: ${payload.content}`,
     icon: '/logo_rumorz.png',
+    timestamp: payload.date,
   };
   event.waitUntil(self.registration.showNotification(title, options));
 });

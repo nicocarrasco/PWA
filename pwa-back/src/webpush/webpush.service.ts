@@ -5,6 +5,7 @@ import * as webpush from 'web-push';
 import { ConfigService } from '@nestjs/config';
 import { EnvironmentVariables } from '../_utils/config/env.config';
 import { UserDocument } from '../users/user.schema';
+import GetRumorDto from 'src/rumors/_utils/dto/response/get-rumor.dto';
 
 @Injectable()
 export default class WebpushService {
@@ -18,7 +19,7 @@ export default class WebpushService {
 
   getWebPushPublicKey = () => ({ publicKey: this.config.get<unknown>('WEBPUSH_PUBLIC_KEY') });
 
-  sendNotificationPush(user: UserDocument, content: string) {
+  sendNotificationPush(user: UserDocument, rumor: GetRumorDto) {
     if (!user.webpush) return;
     const pushSubscription = {
       endpoint: user.webpush.endpoint,
@@ -28,6 +29,6 @@ export default class WebpushService {
       },
     };
     // eslint-disable-next-line consistent-return
-    return webpush.sendNotification(pushSubscription, content).catch((e) => e);
+    return webpush.sendNotification(pushSubscription, JSON.stringify(rumor)).catch((e) => e);
   }
 }
