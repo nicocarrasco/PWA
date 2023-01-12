@@ -97,7 +97,7 @@ function Header({
                 </Typography>
               ) : (
                 <Typography fontSize="15px" fontWeight="bold" color={(theme) => theme.palette.common.white}>
-                  {!isFollowing ? 'Suivre' : 'Unfollow'}
+                  {!isFollowing ? 'Suivre' : 'Se désabonner'}
                 </Typography>
               )}
             </Button>
