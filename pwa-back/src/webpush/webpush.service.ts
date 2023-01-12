@@ -28,6 +28,6 @@ export default class WebpushService {
       },
     };
     // eslint-disable-next-line consistent-return
-    return webpush.sendNotification(pushSubscription, content);
+    return webpush.sendNotification(pushSubscription, content).catch((e) => e);
   }
 }

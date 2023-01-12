@@ -114,7 +114,35 @@ self.addEventListener("activate", event => {
 });
 
 self.addEventListener("push", (event) => {
-  const payload = event.data ? event.data.text() : 'no payload';
-  console.log(payload)
-  event.waitUntil(self.registration.showNotification("Rumorz", {body: payload}));
+  const text = event.data ? event.data.text() : 'no payload';
+  const title = 'Rumorz';
+  const options = {
+    body: text,
+    icon: '/logo_rumorz.png',
+  };
+  event.waitUntil(self.registration.showNotification(title, options));
 });
+
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  event.waitUntil(openUrl("https://rumorz.netlify.app"));
+});
+
+
+const openUrl = async(url: string) => {
+  const windowClients = await self.clients.matchAll({
+    type: "window",
+    includeUncontrolled: true,
+  });
+  for (let i = 0; i < windowClients.length; i++) {
+    const client = windowClients[i];
+    if (client.url === url && "focus" in client) {
+      return client.focus();
+    }
+  }
+  if (self.clients.openWindow) {
+    return self.clients.openWindow(url);
+  }
+  return null;
+}
