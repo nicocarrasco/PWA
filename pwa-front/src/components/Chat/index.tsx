@@ -5,7 +5,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import { useContextUser } from 'contexts/UserProvider';
 import { io } from 'socket.io-client';
-import { BASE_URL } from 'api/initializers/axios';
+import { BASE_URL_CHAT } from 'api/initializers/axios';
 import { UserResponse } from 'api/user';
 import { useTranslation } from 'react-i18next';
 import Message from './Message';
@@ -21,7 +21,7 @@ function Chat({ commuId, isChatModalOpen }: Props) {
   const [value, setValue] = useState('');
   const [messages, setMessages] = useState<{ _id: string, message: string, user: UserResponse,
     date: Date }[]>([]);
-  const socket = useMemo(() => io(`${BASE_URL}/chat?locationId=${commuId}&userId=${user?.id}`), [commuId, user]);
+  const socket = useMemo(() => io(`${BASE_URL_CHAT}/chat?locationId=${commuId}&userId=${user?.id}`), [commuId, user]);
 
   useEffect(() => {
     socket.on('message', (message: { _id: string, message: string, user: UserResponse }) => {
