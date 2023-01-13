@@ -1,8 +1,8 @@
 import { BASE_URL } from 'api/initializers/axios';
 
-const isPushNotificationSupported = () => 'serviceWorker' in navigator && 'PushManager' in window;
+const isPushNotificationSupported = () => 'Notification' in window && 'serviceWorker' in navigator && 'PushManager' in window;
 
-const askUserPermission = async () => Notification.requestPermission();
+const askUserPermission = async () => Notification?.requestPermission();
 
 const registerServiceWorker = () => navigator.serviceWorker.register(`${process.env.PUBLIC_URL}/service-worker.js`);
 

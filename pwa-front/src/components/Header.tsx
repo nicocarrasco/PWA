@@ -8,6 +8,7 @@ import {
   LocationType,
   useContextUser,
 } from 'contexts/UserProvider';
+import { isPushNotificationSupported } from 'push-notification';
 
 type Props =
   {
@@ -60,7 +61,7 @@ function Header({
         >
           {isCustomName ? name : t(name)}
         </Typography>
-        {isCustomName && (
+        {isCustomName && isPushNotificationSupported() && (
           <Stack pr="20px">
             <Button
               variant="contained"

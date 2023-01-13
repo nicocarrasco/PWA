@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 const pushNotificationSupported = isPushNotificationSupported();
 
 const usePushNotifications = () => {
-  const [userConsent, setSuserConsent] = useState(Notification.permission);
+  const [userConsent, setSuserConsent] = useState(Notification?.permission);
   const [userSubscription, setUserSubscription] = useState<PushSubscription>();
   const [error, setError] = useState({});
   const [loading, setLoading] = useState(true);
