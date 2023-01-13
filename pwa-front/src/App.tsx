@@ -54,12 +54,12 @@ function Initializer() {
       });
     }
   }, [onlineStatus]);
-  const { isFetching } = useAxiosInterceptors();
+  const { isFetchingUser } = useAxiosInterceptors();
 
   return (
     <ThemeProvider theme={getThemeCreated(theme)}>
       <CssBaseline />
-      {isFetching ? t('loading') : <AppSelector />}
+      {isFetchingUser ? t('loading') : <AppSelector />}
     </ThemeProvider>
 
   );
