@@ -1,10 +1,6 @@
-import { Fab, Stack, useTheme } from '@mui/material';
-import Chat from 'components/Chat';
-import { useContextCommu } from 'contexts/CommuProvider';
+import { Stack, useTheme } from '@mui/material';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 import React, { useEffect, useState } from 'react';
-import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Navbar from './Navbar';
 
 type Props = {
@@ -12,20 +8,13 @@ type Props = {
 };
 
 function NavigationWrapper({ children }: Props) {
-  const { commuId } = useContextCommu();
   const [isChatModalOpen, setIsChatModalOpen] = useState(false);
-  const [bottomFabChat, setBottomFabChat] = useState('8px');
   const { width } = useWindowDimensions();
   const theme = useTheme();
 
   useEffect(() => {
     if (width >= theme.breakpoints.values.lg) {
       setIsChatModalOpen(false);
-    }
-    if (width < theme.breakpoints.values.sm) {
-      setBottomFabChat('64px');
-    } else {
-      setBottomFabChat('8px');
     }
   }, [width, theme]);
 
@@ -39,6 +28,7 @@ function NavigationWrapper({ children }: Props) {
       }
     }
   }, [isChatModalOpen]);
+
   return (
     <Stack direction="row" justifyContent={{ sm: 'end', lg: 'center' }}>
       <Stack
@@ -69,21 +59,6 @@ function NavigationWrapper({ children }: Props) {
       >
         {children}
       </Stack>
-      {commuId && (
-      <Fab
-        color="secondary"
-        sx={{
-          display: { xs: 'flex', lg: 'none' },
-          position: 'fixed',
-          bottom: bottomFabChat,
-          right: '8px',
-          zIndex: 1,
-        }}
-        onClick={() => setIsChatModalOpen(true)}
-      >
-        <ChatBubbleIcon />
-      </Fab>
-      )}
       <Stack
         sx={{
           borderLeft: `1px solid ${theme.palette.grey[300]}`,
@@ -95,24 +70,9 @@ function NavigationWrapper({ children }: Props) {
           right: 0,
           height: '100%',
         }}
-      >
-        {commuId && (
-        <>
-          {isChatModalOpen && (
-          <ArrowBackIcon
-            fontSize="large"
-            sx={{
-              cursor: 'pointer',
-              margin: '8px',
-            }}
-            onClick={() => setIsChatModalOpen(false)}
-          />
-          )}
-          <Chat commuId={commuId} isChatModalOpen={isChatModalOpen} />
-        </>
-        )}
-      </Stack>
+      />
     </Stack>
   );
 }
+
 export default NavigationWrapper;
