@@ -59,7 +59,7 @@ function LogoText({ link = false, onClick, from = 'signIn' }: Props) {
           }}
         >
           Rumo
-          <RChar>r</RChar>
+          <RChar>rrrrrrrrrrr</RChar>
           <ZChar>z</ZChar>
         </Typography>
       </Stack>
